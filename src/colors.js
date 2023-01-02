@@ -1,7 +1,11 @@
 export default {
-  darkBlue: "#457b9d",
-  lightBlue: "#a8dadc",
-  lightRed: "#e63946",
-  background: "#f1faee",
-  bgdark: "#1d3557"
+  background: "#FFF8EA",
+  main: {
+    100: "#9E7676",
+    200: "#815B5B",
+    300: "#594545",
+    disabled: "#815B5B75",
+  },
+  blue: "#B7C4CF",
+  green: "#CCD6A6",
 }

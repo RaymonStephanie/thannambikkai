@@ -1,17 +1,28 @@
 import colors from "../colors"
 import Card from "../components/Card"
-import { View, Text, FlatList } from "react-native"
+import { View, FlatList } from "react-native"
 import { useState, useEffect } from "react"
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../../firebaseConfig"
 import { useAuth } from "../hooks/useAuth"
+import EStyleSheet from "react-native-extended-stylesheet"
+const styles = EStyleSheet.create({
+  container: {
+    backgroundColor: colors.background,
+    width: "100vw",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  mb1: { marginBottom: "1rem" },
+})
+
 const Home = ({ navigation: { navigate } }) => {
   const [data, setData] = useState()
   const { pending, isSignedIn } = useAuth()
   if (!pending && isSignedIn == false) navigate("Authentication")
-  const renderItem = ({ item, index, separators }) => {
-    return <Card data={item} key={index} />
-  }
+  const renderItem = ({ item, index }) => <Card data={item} key={index} />
   useEffect(() => {
     async function fetchData() {
       const r_data = []
@@ -25,20 +36,11 @@ const Home = ({ navigation: { navigate } }) => {
     fetchData()
   }, [])
   return (
-    <View
-      style={{
-        backgroundColor: colors.background,
-        width: "100vw",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        alignContent: "center",
-      }}
-    >
+    <View style={styles.container}>
       <FlatList
         data={data}
         renderItem={renderItem}
-        contentContainerStyle={{ marginBottom: "1rem" }}
+        contentContainerStyle={styles.mb1}
         showsVerticalScrollIndicator={false}
       />
     </View>

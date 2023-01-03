@@ -3,29 +3,37 @@
     "name": "thannambikkai",
     "slug": "snack-36b98f4a-09d4-4981-ae31-182a868524dd",
     "version": "1.0.0",
+    "jsEngine": "hermes",
     "orientation": "portrait",
-    "icon": "./assets/icon.svg",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFF8EA"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.natech.thannambikkai"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#FFF8EA"
+      },
+      "package": "com.natech.thannambikkai"
     },
     "web": {
       "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "610e2bbd-bf9e-4b84-a247-fed8a3fbca32"
+      }
     }
   }
 }

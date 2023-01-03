@@ -1,9 +1,7 @@
 import colors from "../colors"
-// import Carousel from "react-native-snap-carousel"
 import { View, Text, Image } from "react-native"
 import { PhoneCall, MapPin } from "react-native-feather"
 import { useFonts, LexendDeca_400Regular } from "@expo-google-fonts/lexend-deca"
-import { FlatList } from "react-native-web"
 
 export default function Card({
   data: { id, name, contact, address, img_url, city, district, state },
@@ -13,29 +11,23 @@ export default function Card({
     <View
       style={{
         backgroundColor: colors.main[100] + "50",
-        width: "90%",
-        height: "100vh",
+        width: "90vw",
         alignSelf: "center",
         height: "max-content",
-        borderRadius: "15px",
+        borderRadius: "8px",
+        marginTop: ".5rem",
       }}
     >
-      {[img_url[1]].forEach((img, index) => {
-        console.log({ uri: img })
-        return (
-          <Image
-            source={{ uri: img }}
-            style={{
-              width: "100%",
-              height: "50%",
-              // resizeMode: "cover",
-              // borderTopLeftRadius: "15px",
-              // borderTopRightRadius: "15px",
-            }}
-            key={index}
-          />
-        )
-      })}
+      <Image
+        source={img_url}
+        style={{
+          width: "80vw",
+          height: img_url == "" ? "0vh" : "30vh",
+          resizeMode: "contain",
+          marginTop: ".5rem",
+          alignSelf: "center",
+        }}
+      />
       <View style={{ padding: "1rem" }}>
         <Text style={[lex, { fontSize: "1.5rem", fontWeight: "700" }]}>
           {name}

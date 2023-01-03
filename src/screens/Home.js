@@ -17,7 +17,9 @@ const Home = ({ navigation: { navigate } }) => {
       const r_data = []
       const querySnapshot = await getDocs(collection(db, "main_list"))
       // prettier-ignore
-      querySnapshot.forEach((doc) => r_data.push({ ...{ id: doc.id }, ...doc.data() }))
+      querySnapshot.forEach((doc) => {
+        r_data.push({ ...{ id: doc.id }, ...doc.data() })
+      })
       setData(r_data)
     }
     fetchData()
@@ -33,7 +35,12 @@ const Home = ({ navigation: { navigate } }) => {
         alignContent: "center",
       }}
     >
-      <FlatList data={data} renderItem={renderItem} />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        contentContainerStyle={{ marginBottom: "1rem" }}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   )
 }

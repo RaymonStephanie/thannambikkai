@@ -1,0 +1,7 @@
+- address
+- city
+- contact
+- district
+- img_url
+- name
+- state

@@ -9,19 +9,18 @@ export default function Main() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Authentication"
           component={Auth}
           options={{
             header: () => <Title />,
             headerBackVisible: false,
           }}
-        /> */}
+        />
         <Stack.Screen
           name="Home"
           component={Home}
           options={{
-            // headerTitle: () => <Title />,
             headerBackVisible: false,
             header: () => <Title />,
           }}

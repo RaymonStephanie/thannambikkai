@@ -1,32 +1,33 @@
-import { useState } from "react"
-import { auth } from "../../firebaseConfig"
+import { useState, useEffect } from "react"
+// import { auth as fauth } from "../../firebaseConfig"
+import { useAuth } from "../hooks/useAuth"
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth/react-native"
-import { Alert, StyleSheet, View } from "react-native"
+import { Alert, View } from "react-native"
 import Input from "../components/Input"
 import Button from "../components/Button"
 import colors from "../colors"
 
-const Auth = () => {
+const Auth = ({ navigation: { navigate } }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
+  const { pending, isSignedIn, user, auth } = useAuth()
+  if (!pending && isSignedIn) navigate("Home")
   const signInWithEmail = async () => {
-    setLoading(true)
-    signInWithEmailAndPassword(auth, email, password).catch((err) => {
-      Alert.alert(err.message)
-      console.log(err.message)
-    })
-    setLoading(false)
+    signInWithEmailAndPassword(auth, email, password)
+      .catch((err) => {
+        Alert.alert(err.message)
+      })
+      .then(() => navigate("Home"))
   }
   const signUpWithEmail = async () => {
-    setLoading(true)
-    createUserWithEmailAndPassword(auth, email, password).catch((err) => {
-      Alert.alert(err.message)
-    })
-    setLoading(false)
+    createUserWithEmailAndPassword(auth, email, password)
+      .catch((err) => {
+        Alert.alert(err.message)
+      })
+      .then(() => navigate("Home"))
   }
   return (
     <View
@@ -49,8 +50,19 @@ const Auth = () => {
         }}
       >
         <View>
-          <Input placeholder="Email" />
-          <Input placeholder="Password" secure={true} />
+          <Input
+            placeholder="Email"
+            value={email}
+            onChangeText={(t) => setEmail(t)}
+          />
+          <Input
+            secure={true}
+            placeholder="Password"
+            value={password}
+            onChangeText={(t) => setPassword(t)}
+            spellCheck={false}
+            autoCorrect={false}
+          />
         </View>
         <View
           style={{
@@ -62,16 +74,8 @@ const Auth = () => {
             justifyContent: "space-evenly",
           }}
         >
-          <Button
-            onPress={() => signUpWithEmail()}
-            contents="Sign up"
-            disabled={loading}
-          />
-          <Button
-            onPress={() => signInWithEmail()}
-            contents="Sign in"
-            disabled={loading}
-          />
+          <Button onPress={() => signUpWithEmail()} contents="Sign up" />
+          <Button onPress={() => signInWithEmail()} contents="Sign in" />
         </View>
       </View>
     </View>

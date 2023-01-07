@@ -3,20 +3,21 @@ import { View, Text, Image } from "react-native"
 import { PhoneCall, MapPin } from "react-native-feather"
 import { useFonts, LexendDeca_400Regular } from "@expo-google-fonts/lexend-deca"
 import EStyleSheet from "react-native-extended-stylesheet"
+import { vw, vh } from "react-native-expo-viewport-units"
 import { useState } from "react"
 
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: colors.main[100] + "50",
-    width: "90vw",
+    width: vw(90),
     alignSelf: "center",
     height: "max-content",
-    borderRadius: "8px",
+    borderRadius: 8,
     marginTop: ".5rem",
   },
   image: {
-    width: "80vw",
-    height: `30vh`,
+    width: vw(80),
+    height: vh(30),
     resizeMode: "contain",
     marginTop: ".5rem",
     alignSelf: "center",
@@ -26,13 +27,13 @@ const styles = EStyleSheet.create({
   lex: {
     fontFamily: "LexendDeca_400Regular",
     color: colors.main[300],
-    marginTop: "5px",
+    marginTop: 5,
   },
   fs3r: { fontSize: "1.3rem" },
   fs5r: { fontSize: "1.5rem" },
   bold: { fontWeight: "700" },
   icon: {
-    marginRight: "10px",
+    marginRight: 10,
     marginTop: "auto",
     marginBottom: "auto",
   },
@@ -42,7 +43,8 @@ export default function Card({
 }) {
   const [loaded] = useFonts({ LexendDeca_400Regular })
   const [imgload, setimgload] = useState(false)
-  return !loaded ? null : (
+  if (!loaded) return null
+  return (
     <View style={styles.container}>
       <Image
         source={img_url}

@@ -10,18 +10,19 @@ import Input from "../components/Input"
 import Button from "../components/Button"
 import colors from "../colors"
 import EStyleSheet from "react-native-extended-stylesheet"
+import { vw, vh } from "react-native-expo-viewport-units"
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: colors.background,
-    width: "100vw",
-    height: "100vh",
+    width: vw(100),
+    height: vh(100),
     display: "flex",
     justifyContent: "center",
   },
   innerContainer: {
     display: "flex",
     height: "50%",
-    width: "90vw",
+    width: vh(90),
     padding: ".5rem",
     alignSelf: "center",
     alignItems: "center",

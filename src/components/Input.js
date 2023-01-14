@@ -1,9 +1,9 @@
-import { useState } from "react"
 import colors from "../colors"
-import { TextInput, TouchableOpacity, View } from "react-native"
-// import { LexendDeca_400Regular, useFonts } from "@expo-google-fonts/lexend-deca"
+import { useState } from "react"
 import { EyeOff } from "react-native-feather"
 import EStyleSheet from "react-native-extended-stylesheet"
+import { TextInput, TouchableOpacity, View } from "react-native"
+import { LexendDeca_400Regular, useFonts } from "@expo-google-fonts/lexend-deca"
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: colors.blue,
@@ -17,7 +17,7 @@ const styles = EStyleSheet.create({
   },
   input: {
     color: colors.main[300],
-    // fontFamily: "LexendDeca_400Regular",
+    fontFamily: "LexendDeca_400Regular",
     fontSize: "1.25rem",
     outlineStyle: "none",
   },
@@ -27,9 +27,9 @@ const styles = EStyleSheet.create({
   },
 })
 export default function Input(props) {
-  // const loaded = useFonts({ LexendDeca_400Regular })
+  const loaded = useFonts({ LexendDeca_400Regular })
   const [sec, setsec] = useState(props.secure)
-  // if (!loaded) return null
+  if (!loaded) return null
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} {...props} secureTextEntry={sec} />

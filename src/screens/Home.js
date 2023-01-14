@@ -6,7 +6,6 @@ import { collection, getDocs } from "firebase/firestore"
 import { db } from "../../firebaseConfig"
 import { useAuth } from "../hooks/useAuth"
 import EStyleSheet from "react-native-extended-stylesheet"
-import { useFonts, LexendDeca_400Regular } from "@expo-google-fonts/lexend-deca"
 import { vw } from "react-native-expo-viewport-units"
 const styles = EStyleSheet.create({
   container: {
@@ -24,7 +23,6 @@ const Home = ({ navigation: { navigate } }) => {
   const [data, setData] = useState()
   const { pending, isSignedIn } = useAuth()
   if (!pending && isSignedIn == false) navigate("Authentication")
-  const [loaded] = useFonts({ LexendDeca_400Regular })
   const renderItem = ({ item, index }) => <Card data={item} key={index} />
   useEffect(() => {
     async function fetchData() {

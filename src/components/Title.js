@@ -1,11 +1,12 @@
-import { LogOut } from "react-native-feather"
-import { auth } from "../../firebaseConfig"
-import { useNavigation } from "@react-navigation/native"
-import { View, Text, Image, TouchableOpacity } from "react-native"
-// import { useFonts, LexendDeca_400Regular } from "@expo-google-fonts/lexend-deca"
 import colors from "../colors"
-import EStyleSheet from "react-native-extended-stylesheet"
+import { auth } from "../../firebaseConfig"
+import { LogOut } from "react-native-feather"
 import { vw } from "react-native-expo-viewport-units"
+import { useNavigation } from "@react-navigation/native"
+import EStyleSheet from "react-native-extended-stylesheet"
+import { View, Text, Image, TouchableOpacity } from "react-native"
+import { useFonts, LexendDeca_400Regular } from "@expo-google-fonts/lexend-deca"
+
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: colors.background,
@@ -23,7 +24,7 @@ const styles = EStyleSheet.create({
     alignItems: "center",
   },
   text: {
-    // fontFamily: "LexendDeca_400Regular",
+    fontFamily: "LexendDeca_400Regular",
     fontSize: "1.75rem",
     fontWeight: "700",
     marginLeft: ".5rem",
@@ -31,8 +32,8 @@ const styles = EStyleSheet.create({
   },
 })
 export default function Title() {
-  // let [loaded] = useFonts({ LexendDeca_400Regular })
-  // if (!loaded) return null
+  let [loaded] = useFonts({ LexendDeca_400Regular })
+  if (!loaded) return null
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>

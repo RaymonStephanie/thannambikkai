@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useAuth } from "../hooks/useAuth"
 import { auth } from "../../firebaseConfig"
 import {
   createUserWithEmailAndPassword,
@@ -31,30 +30,24 @@ const styles = EStyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: "100%",
+    width: "25%",
     marginTop: "2rem",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
   },
 })
 
-const Auth = ({ navigation: { navigate } }) => {
+const Auth = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const { pending, isSignedIn, user } = useAuth()
-  if (!pending && isSignedIn) navigate("Home")
   const signInWithEmail = async () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .catch((err) => {
-        Alert.alert(err.message)
-      })
-      .then(() => navigate("Home"))
+    signInWithEmailAndPassword(auth, email, password).catch((err) => {
+      Alert.alert(err.message)
+    })
   }
   const signUpWithEmail = async () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .catch((err) => {
-        Alert.alert(err.message)
-      })
-      .then(() => navigate("Home"))
+    createUserWithEmailAndPassword(auth, email, password).catch((err) => {
+      Alert.alert(err.message)
+    })
   }
   return (
     <View style={styles.container}>

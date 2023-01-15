@@ -4,7 +4,7 @@ import { View, FlatList } from "react-native"
 import { useState, useEffect } from "react"
 import { collection, getDocs } from "firebase/firestore"
 import { db } from "../../firebaseConfig"
-import { useAuth } from "../hooks/useAuth"
+// import { useAuth } from "../hooks/useAuth"
 import EStyleSheet from "react-native-extended-stylesheet"
 import { vw } from "react-native-expo-viewport-units"
 const styles = EStyleSheet.create({
@@ -16,13 +16,13 @@ const styles = EStyleSheet.create({
     alignItems: "center",
     alignContent: "center",
   },
-  mb1: { marginBottom: "1rem" },
+  mb1: { paddingBottom: "3rem" },
 })
 
-const Home = ({ navigation: { navigate } }) => {
+const Home = () => {
   const [data, setData] = useState()
-  const { pending, isSignedIn } = useAuth()
-  if (!pending && isSignedIn == false) navigate("Authentication")
+  // const { pending, isSignedIn } = useAuth()
+  // if (!pending && isSignedIn == false) navigate("Authentication")
   const renderItem = ({ item, index }) => <Card data={item} key={index} />
   useEffect(() => {
     async function fetchData() {
@@ -36,7 +36,7 @@ const Home = ({ navigation: { navigate } }) => {
     }
     fetchData()
   }, [])
-  return !loaded ? null : (
+  return (
     <View style={styles.container}>
       <FlatList
         data={data}

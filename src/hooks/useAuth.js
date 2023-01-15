@@ -8,9 +8,8 @@ export function useAuth() {
     user: null,
   })
   useEffect(() => {
-    const unregisterAuthObserver = auth.onAuthStateChanged((user) =>
-      setAuthState({ user, pending: false, isSignedIn: !!user })
-    )
+    // prettier-ignore
+    const unregisterAuthObserver = auth.onAuthStateChanged((user) => setAuthState({ user, pending: false, isSignedIn: !!user }))
     return () => unregisterAuthObserver()
   }, [])
 

@@ -3,23 +3,24 @@ import { useState } from "react"
 import { EyeOff } from "react-native-feather"
 import EStyleSheet from "react-native-extended-stylesheet"
 import { TextInput, TouchableOpacity, View } from "react-native"
-import { LexendDeca_400Regular, useFonts } from "@expo-google-fonts/lexend-deca"
+// import { LexendDeca_400Regular, useFonts } from "@expo-google-fonts/lexend-deca"
 const styles = EStyleSheet.create({
   container: {
     backgroundColor: colors.blue,
     borderRadius: 8,
     display: "flex",
     flexDirection: "row",
-    width: "100%",
+    width: "50%",
     padding: ".5rem",
     marginBottom: 5,
     alignItems: "center",
   },
   input: {
     color: colors.main[300],
-    fontFamily: "LexendDeca_400Regular",
+    // fontFamily: "LexendDeca_400Regular",
     fontSize: "1.25rem",
     outlineStyle: "none",
+    width: "75%",
   },
   icon: {
     width: 24,
@@ -27,9 +28,9 @@ const styles = EStyleSheet.create({
   },
 })
 export default function Input(props) {
-  const loaded = useFonts({ LexendDeca_400Regular })
+  // const loaded = useFonts({ LexendDeca_400Regular })
   const [sec, setsec] = useState(props.secure)
-  if (!loaded) return null
+  // if (!loaded) return null
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} {...props} secureTextEntry={sec} />
@@ -37,7 +38,9 @@ export default function Input(props) {
         <TouchableOpacity onPress={() => setsec(!sec)}>
           <EyeOff style={styles.icon} color={colors.main[300]} />
         </TouchableOpacity>
-      ) : null}
+      ) : (
+        <TouchableOpacity disabled={true} style={styles.icon} />
+      )}
     </View>
   )
 }
